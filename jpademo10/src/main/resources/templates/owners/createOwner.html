@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Owner</title>
+</head>
+<body>
+<div align="center">
+    <h1>Opret Bruger</h1>
+    <form action="/createOwner" method="post">
+        <label>First Name</label>
+        <input type="text" value="firstName" th:field="${owner.firstName}">
+        <button type="submit">Opret</button>
+    </form>
+</div>
+
+</body>
+</html>

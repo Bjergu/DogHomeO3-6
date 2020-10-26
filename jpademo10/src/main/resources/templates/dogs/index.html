@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: coral;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .row {
+            display: flex;
+        }
+
+        /* Create two equal columns that sits next to each other */
+        .column {
+            /*flex: 33%;*/
+            flex-basis: 33%;
+            padding: 10px;
+        }
+
+        #headline{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1 id="headline">Dog Home</h1>
+
+<div class="row">
+    <div class="column" style="background-color:#aaa">
+
+    <h2>Table Owners.</h2>
+        <div>
+            <th><a href="/createOwner"><button>Create Owner</button></a> </th>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr  th:each="owner : ${owners}">
+                <td th:text="${owner.id}"></td>
+                <td th:text="${owner.firstName}"></td>
+
+                <td><a th:href="@{'/delete/' + ${owner.id}}"> <button> Delete </button></a></td>
+                <td><a th:href="@{'/edit/' + ${owner.id}}"> <button> Update </button></a></td>
+            </tbody>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="column" style="background-color:#bbb;">
+        <h2>Adopter hund</h2>
+        <h3>Ole : Max</h3>
+        <h3>Jens : Fido</h3>
+        <h3>Anna : Buster</h3>
+    </div>
+    <div class="column" style="background-color:#ccc;">
+        <h2>Opret hund:</h2>
+        <h3>navn og billede URL</h3>
+        <h4>Buster</h4>
+        <form method="post" action="/dogs/addDog">
+            Navn:
+            <input type="text" name="name"></br>
+            Billede url:
+            <input type="text" name="imageUrl">
+            <select name="owner" >
+                <option th:each="owner:${owners}" th:value="${owner.id}" th:text="${owner.firstName}"></option>
+            </select>
+            <input type="submit" value="Gem">
+        </form>
+        <div th:each="dog:${dogs}">
+            <h3 th:text="${dog.name}"></h3>
+            <img th:src="${dog.imageUrl}">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
