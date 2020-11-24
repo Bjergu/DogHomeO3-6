@@ -6,6 +6,9 @@ import java.util.Set;
 @Entity
 @Table(name = "owners") // (name = "owners") er krævet.
 public class Owner {
+    public Owner(){
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

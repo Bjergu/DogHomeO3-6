@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dogs")
 public class Dog {
+    public Dog(){
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

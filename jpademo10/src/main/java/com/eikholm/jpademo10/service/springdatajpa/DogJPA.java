@@ -9,10 +9,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
+@Service// den gør, at en instans fra denne klasse bliver oprettet, og
+// sat ind i OwnerController via konstruktor.
 public class DogJPA implements DogService {
     private final DogRepository dogRepository;
 
+    // Spring vil *selv* oprette en instans, som implementerer OwnerRepository
     public DogJPA(DogRepository dogRepository) {
         this.dogRepository = dogRepository;
     }

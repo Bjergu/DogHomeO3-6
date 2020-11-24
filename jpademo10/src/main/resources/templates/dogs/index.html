@@ -16,6 +16,7 @@
         /* Create two equal columns that sits next to each other */
         .column {
             /*flex: 33%;*/
+            /*max-width: 55%;*/
             flex-basis: 33%;
             padding: 10px;
         }
@@ -58,11 +59,23 @@
 
 
     <div class="column" style="background-color:#bbb;">
-        <h2>Adopter hund</h2>
-        <h3>Ole : Max</h3>
-        <h3>Jens : Fido</h3>
-        <h3>Anna : Buster</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Owner name</th>
+                <th>Dog name</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr  th:each="dog : ${dogs}">
+                <td th:text="${dog.name}"></td>
+                <td th:text="${dog.owner.getFirstName()}"></td>
+            </tbody>
+            </tr>
+        </table>
     </div>
+
     <div class="column" style="background-color:#ccc;">
         <h2>Opret hund:</h2>
         <h3>navn og billede URL</h3>
@@ -79,7 +92,7 @@
         </form>
         <div th:each="dog:${dogs}">
             <h3 th:text="${dog.name}"></h3>
-            <img th:src="${dog.imageUrl}">
+            <img style="max-width: 100%" th:src="${dog.imageUrl}">
         </div>
     </div>
 </div>
